@@ -4,6 +4,7 @@ import HomeScreen from './app/screens/HomeScreen';
 import MyButton from './app/components/MyButton';
 import MovieCard from './app/components/MovieCard';
 import BrowseScreen from './app/screens/BrowseScreen';
+import CategoryScroll from './app/components/CategoryScroll';
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
