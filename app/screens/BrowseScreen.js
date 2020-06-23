@@ -8,14 +8,13 @@ import {
 } from 'react-native';
 import MovieCard from '../components/MovieCard';
 import CategoryScroll from '../components/CategoryScroll';
+import DataFetching from '../components/DataFetching';
 
-function BrowseScreen() {
+function BrowseScreen({ navigation }) {
   return (
     <ScrollView style={styles.scrollViewContainer}>
       <SafeAreaView style={styles.container}>
-        <CategoryScroll categoryTitle="Popular" />
-        <CategoryScroll categoryTitle="Latest" />
-        <CategoryScroll categoryTitle="Newest" />
+        <DataFetching navigation={navigation} />
       </SafeAreaView>
     </ScrollView>
   );
@@ -27,8 +26,6 @@ const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     width: '100%',
-    borderColor: 'green',
-    // borderWidth: 2,
     backgroundColor: '#000',
   },
 });

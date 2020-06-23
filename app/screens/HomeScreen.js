@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Image, StyleSheet, Button } from 'react-native';
 
 import MyButton from '../components/MyButton';
-function HomeScreen() {
+
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image
@@ -10,7 +11,10 @@ function HomeScreen() {
         source={require('../assets/moviesdblogo.jpg')}
       />
       <View style={styles.buttonContainer}>
-        <MyButton title="Browse" />
+        <MyButton
+          title="Browse"
+          onPress={() => navigation.navigate('BrowseScreen')}
+        />
         <MyButton title="Login" />
       </View>
     </View>

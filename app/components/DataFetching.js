@@ -8,17 +8,44 @@ import {
   Image,
 } from 'react-native';
 import axios from 'axios';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-function DataFetching() {
-  const [movie, setMovie] = useState([]);
+function DataFetching({ navigation }) {
+  const [moviePopular, setMoviePopular] = useState([]);
+  const [movieUpcoming, setMovieUpcoming] = useState([]);
+  const [movieNow, setMovieNow] = useState([]);
+
+  const getMoviePopular =
+    'https://api.themoviedb.org/3/movie/popular?api_key=65de017fef5ab1456020e1c4aa91d4d4';
+  const getMovieUpcoming =
+    'https://api.themoviedb.org/3/movie/upcoming?api_key=65de017fef5ab1456020e1c4aa91d4d4';
+  const getMovieNow =
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=65de017fef5ab1456020e1c4aa91d4d4';
 
   useEffect(() => {
     axios
-      .get(
-        'https://api.themoviedb.org/3/movie/popular?api_key=65de017fef5ab1456020e1c4aa91d4d4'
-      )
+      .get(getMoviePopular)
       .then((response) => {
-        setMovie(response.data.results);
+        setMoviePopular(response.data.results);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  console.log(moviePopular.length);
+
+  useEffect(() => {
+    axios
+      .get(getMovieUpcoming)
+      .then((response) => {
+        setMovieUpcoming(response.data.results);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(getMovieNow)
+      .then((response) => {
+        setMovieNow(response.data.results);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -27,7 +54,42 @@ function DataFetching() {
     <SafeAreaView style={styles.container}>
       <FlatList
         horizontal={true}
-        data={movie}
+        data={moviePopular}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            navigation={navigation}
+            onPress={() => navigation.navigate('DetailsScreen')}
+          >
+            <View style={styles.renderItemContainer}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
+                }}
+              ></Image>
+              <Text style={styles.text}>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      ></FlatList>
+      <FlatList
+        horizontal={true}
+        data={movieUpcoming}
+        renderItem={({ item }) => (
+          <View style={styles.renderItemContainer}>
+            <Image
+              style={styles.image}
+              source={{
+                uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
+              }}
+            ></Image>
+            <Text style={styles.text}>{item.title}</Text>
+          </View>
+        )}
+      ></FlatList>
+      <FlatList
+        horizontal={true}
+        data={movieNow}
         renderItem={({ item }) => (
           <View style={styles.renderItemContainer}>
             <Image
@@ -47,9 +109,8 @@ function DataFetching() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    // height: 100,
-    backgroundColor: '#fff',
+    width: '98%',
+    backgroundColor: 'red',
     overflow: 'hidden',
     borderRadius: 8,
   },
@@ -57,10 +118,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   renderItemContainer: {
-    width: 200,
+    width: 120,
     flex: 1,
-    height: 300,
+    height: 200,
     marginHorizontal: 10,
+    marginVertical: 10,
     borderRadius: 8,
     overflow: 'hidden',
   },
@@ -71,6 +133,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  TouchableOpacity: {
+    flex: 1,
   },
 });
 
