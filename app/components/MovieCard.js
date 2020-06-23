@@ -1,5 +1,7 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
+
+import DataFetching from '../components/DataFetching';
 
 function MovieCard({ title }) {
   return (
@@ -14,8 +16,8 @@ function MovieCard({ title }) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: 200,
-    height: 150,
+    width: 250,
+    height: 250,
     backgroundColor: '#fff',
     borderRadius: 15,
     overflow: 'hidden',

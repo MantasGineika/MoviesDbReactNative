@@ -5,11 +5,12 @@ import MyButton from './app/components/MyButton';
 import MovieCard from './app/components/MovieCard';
 import BrowseScreen from './app/screens/BrowseScreen';
 import CategoryScroll from './app/components/CategoryScroll';
+import DataFetching from './app/components/DataFetching';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <BrowseScreen />
+      <DataFetching />
     </SafeAreaView>
   );
 }
