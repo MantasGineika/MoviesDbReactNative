@@ -58,7 +58,14 @@ function DataFetching({ navigation }) {
         renderItem={({ item }) => (
           <TouchableOpacity
             navigation={navigation}
-            onPress={() => navigation.navigate('DetailsScreen')}
+            onPress={() =>
+              navigation.navigate('DetailsScreen', {
+                title: item.title,
+                overview: item.overview,
+                poster_path: item.poster_path,
+                id: item.id,
+              })
+            }
           >
             <View style={styles.renderItemContainer}>
               <Image
@@ -110,7 +117,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '98%',
-    backgroundColor: 'red',
+    backgroundColor: '#000',
     overflow: 'hidden',
     borderRadius: 8,
   },
@@ -129,8 +136,8 @@ const styles = StyleSheet.create({
   text: {
     padding: 5,
     textAlign: 'center',
-    backgroundColor: '#000',
-    color: '#fff',
+    backgroundColor: '#fff',
+    color: '#000',
     fontSize: 14,
     fontWeight: 'bold',
   },

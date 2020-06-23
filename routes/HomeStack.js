@@ -33,6 +33,7 @@ export default function Navigator() {
         <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="DataFetching" component={DataFetching} />
+        <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
