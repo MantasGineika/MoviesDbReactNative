@@ -11,8 +11,26 @@ function PlayerScreen({ route, navigation }) {
   const playerRef = useRef(null);
   const [playing, setPlaying] = useState(true);
 
+  const { id } = route.params;
+  console.log(id);
+
+  const [movieKey, setMovieKey] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=65de017fef5ab1456020e1c4aa91d4d4&language=en-US`
+      )
+      .then((response) => {
+        setMovieKey(response.data.results);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  // const key = movieKey[0].name;
+  console.log(movieKey);
   return (
     <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
+      <Text></Text>
       {/* <YoutubePlayer
         ref={playerRef}
         height={300}
