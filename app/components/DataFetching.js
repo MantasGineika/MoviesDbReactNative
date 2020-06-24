@@ -48,9 +48,9 @@ function DataFetching({ navigation }) {
       })
       .catch((error) => console.log(error));
   }, []);
-
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.listTitle}>Popular</Text>
       <FlatList
         keyExtractor={(item) => item.id.toString()}
         horizontal={true}
@@ -63,7 +63,8 @@ function DataFetching({ navigation }) {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,
-                id: item.imdb_id,
+                poster_path1: item.poster_path,
+                id: item.id,
               })
             }
           >
@@ -79,36 +80,62 @@ function DataFetching({ navigation }) {
           </TouchableOpacity>
         )}
       ></FlatList>
+      <Text style={styles.listTitle}>Upcoming</Text>
       <FlatList
         keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         data={movieUpcoming}
         renderItem={({ item }) => (
-          <View style={styles.renderItemContainer}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
-              }}
-            ></Image>
-            <Text style={styles.text}>{item.title}</Text>
-          </View>
+          <TouchableOpacity
+            navigation={navigation}
+            onPress={() =>
+              navigation.navigate('DetailsScreen', {
+                title: item.title,
+                overview: item.overview,
+                poster_path: item.poster_path,
+                id: item.id,
+              })
+            }
+          >
+            <View style={styles.renderItemContainer}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
+                }}
+              ></Image>
+              <Text style={styles.text}>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       ></FlatList>
+      <Text style={styles.listTitle}>Now Playing</Text>
       <FlatList
         keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         data={movieNow}
         renderItem={({ item }) => (
-          <View style={styles.renderItemContainer}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
-              }}
-            ></Image>
-            <Text style={styles.text}>{item.title}</Text>
-          </View>
+          <TouchableOpacity
+            navigation={navigation}
+            onPress={() =>
+              navigation.navigate('DetailsScreen', {
+                title: item.title,
+                overview: item.overview,
+                poster_path: item.poster_path,
+                id: item.id,
+              })
+            }
+          >
+            <View style={styles.renderItemContainer}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
+                }}
+              ></Image>
+              <Text style={styles.text}>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       ></FlatList>
     </SafeAreaView>
@@ -125,6 +152,13 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+  },
+  listTitle: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 5,
+    marginHorizontal: 10,
   },
   renderItemContainer: {
     width: 120,

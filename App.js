@@ -11,6 +11,7 @@ import HomeScreen from './app/screens/HomeScreen';
 import BrowseScreen from './app/screens/BrowseScreen';
 import DetailsScreen from './app/screens/DetailsScreen';
 import PlayerScreen from './app/screens/PlayerScreen';
+import SimilarMovieScreen from './app/screens/SimilarMovieScreen';
 import SafeViewAndroid from './app/components/SafeViewAndroid';
 
 const Stack = createStackNavigator();
@@ -25,6 +26,10 @@ export default function App() {
           <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
           <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
           <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
+          <Stack.Screen
+            name="SimilarMovieScreen"
+            component={SimilarMovieScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
