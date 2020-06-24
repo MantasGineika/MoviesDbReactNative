@@ -63,7 +63,6 @@ function DataFetching({ navigation }) {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,
-                poster_path1: item.poster_path,
                 id: item.id,
               })
             }

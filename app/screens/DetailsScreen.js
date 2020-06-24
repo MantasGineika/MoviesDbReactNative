@@ -18,7 +18,6 @@ function DetailsScreen({ route, navigation }) {
   const { title } = route.params;
   const { overview } = route.params;
   const { poster_path } = route.params;
-  const { poster_path1 } = route.params;
   const { id } = route.params;
   const [similarMovies, setSimilarMovies] = useState([]);
   const getSimilarMovies = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=65de017fef5ab1456020e1c4aa91d4d4&language=en-US&page=1`;
@@ -38,7 +37,7 @@ function DetailsScreen({ route, navigation }) {
       <View style={styles.container}>
         <Image
           resizeMode="contain"
-          source={{ uri: `https://image.tmdb.org/t/p/w500//${poster_path1}` }}
+          source={{ uri: `https://image.tmdb.org/t/p/w500//${poster_path}` }}
           style={styles.image}
         />
         <View style={styles.descriptionContainer}>
@@ -107,11 +106,12 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    marginBottom: 10,
   },
   descriptionContainer: { flex: 1 },
   image: {
-    flex: 4,
+    flex: 3,
   },
   imageSimilar: {
     flex: 1,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   subtitle2: {},
   title: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
     marginHorizontal: 15,

@@ -33,26 +33,28 @@ function DetailsScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
-      <Image
-        resizeMode="contain"
-        source={{ uri: `https://image.tmdb.org/t/p/w500//${poster_path}` }}
-        style={styles.image}
-      />
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.title}>{JSON.stringify(title)}</Text>
-        <Text style={styles.subtitle}>{JSON.stringify(overview)}</Text>
-      </View>
-      <View style={styles.buttonsContainer}>
-        <Button
-          style={styles.button}
-          title="Play Movie"
-          onPress={() =>
-            navigation.navigate('SimilarMovieScreen', {
-              id: id,
-            })
-          }
-        ></Button>
-        <Button style={styles.button} title="Add to Library"></Button>
+      <View style={styles.container}>
+        <Image
+          resizeMode="contain"
+          source={{ uri: `https://image.tmdb.org/t/p/w500//${poster_path}` }}
+          style={styles.image}
+        />
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.title}>{JSON.stringify(title)}</Text>
+          <Text style={styles.subtitle}>{JSON.stringify(overview)}</Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            style={styles.button}
+            title="Play Movie"
+            onPress={() =>
+              navigation.navigate('SimilarMovieScreen', {
+                id: id,
+              })
+            }
+          ></Button>
+          <Button style={styles.button} title="Add to Library"></Button>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -61,6 +63,7 @@ function DetailsScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000',
   },
   button: {
     marginHorizontal: 10,
@@ -69,21 +72,25 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
-  descriptionContainer: { flex: 2 },
+  descriptionContainer: {
+    flex: 2,
+  },
   image: {
     flex: 3,
   },
   subtitle: {
     marginHorizontal: 15,
+    color: '#fff',
+    fontSize: 14,
   },
-  subtitle2: {},
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 10,
     marginHorizontal: 15,
+    color: '#fff',
   },
 });
 
