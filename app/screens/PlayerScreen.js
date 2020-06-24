@@ -1,11 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, StyleSheet, View, SafeAreaView } from 'react-native';
-import WebView from 'react-native-webview';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
 import axios from 'axios';
 
 import YoutubePlayer from 'react-native-youtube-iframe';
 import SafeViewAndroid from '../components/SafeViewAndroid';
-import { FlatList } from 'react-native-gesture-handler';
 
 function PlayerScreen({ route, navigation }) {
   const playerRef = useRef(null);
@@ -14,7 +12,7 @@ function PlayerScreen({ route, navigation }) {
   const { id } = route.params;
   console.log(id);
 
-  const [movieKey, setMovieKey] = useState([]);
+  const [movieKey, setMovieKey] = useState({});
 
   useEffect(() => {
     axios
@@ -22,16 +20,16 @@ function PlayerScreen({ route, navigation }) {
         `https://api.themoviedb.org/3/movie/${id}/videos?api_key=65de017fef5ab1456020e1c4aa91d4d4&language=en-US`
       )
       .then((response) => {
-        setMovieKey(response.data.results);
+        setMovieKey(response.data.results[0]);
       })
       .catch((error) => console.log(error));
   }, []);
-  // const key = movieKey[0].name;
   console.log(movieKey);
+  const key = movieKey.key;
+
   return (
     <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
-      <Text></Text>
-      {/* <YoutubePlayer
+      <YoutubePlayer
         ref={playerRef}
         height={300}
         width={400}
@@ -47,16 +45,18 @@ function PlayerScreen({ route, navigation }) {
           cc_lang_pref: 'us',
           showClosedCaptions: true,
         }}
-      /> */}
+      />
     </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   backgroundVideo: {
     flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 export default PlayerScreen;

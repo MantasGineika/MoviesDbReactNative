@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, Button } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 import MyButton from '../components/MyButton';
 
@@ -13,7 +13,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <MyButton
           title="Browse"
-          onPress={() => navigation.navigate('BrowseScreen')}
+          onPress={() => navigation.navigate('Browse Movies')}
         />
         <MyButton title="Login" />
       </View>
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
-    width: '100%',
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
@@ -36,8 +35,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     flex: 1,
-    width: '100%',
-    // height: '0%',
+    width: '90%',
   },
 });
 

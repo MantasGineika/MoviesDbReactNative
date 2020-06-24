@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import { View, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 
 import DataFetching from '../components/DataFetching';
 import SafeViewAndroid from '../components/SafeViewAndroid';

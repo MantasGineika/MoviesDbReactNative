@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
-
-import DataFetching from '../components/DataFetching';
+import React from 'react';
+import { View, Image, Text, StyleSheet } from 'react-native';
 
 function MovieCard({ title }) {
   return (

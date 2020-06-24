@@ -13,16 +13,17 @@ function MyButton({ title, onPress }) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 200,
-    borderRadius: 16,
-    paddingVertical: 14,
-    paddingHorizontal: 7,
+    width: 150,
+    borderRadius: 8,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
     backgroundColor: '#fff',
     marginVertical: 10,
+    marginHorizontal: 10,
   },
   buttonText: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
     textTransform: 'uppercase',

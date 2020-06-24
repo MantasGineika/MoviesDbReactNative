@@ -48,6 +48,7 @@ function DataFetching({ navigation }) {
       })
       .catch((error) => console.log(error));
   }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Popular</Text>
@@ -59,7 +60,7 @@ function DataFetching({ navigation }) {
           <TouchableOpacity
             navigation={navigation}
             onPress={() =>
-              navigation.navigate('DetailsScreen', {
+              navigation.navigate('Movie Details', {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,
@@ -88,7 +89,7 @@ function DataFetching({ navigation }) {
           <TouchableOpacity
             navigation={navigation}
             onPress={() =>
-              navigation.navigate('DetailsScreen', {
+              navigation.navigate('Movie Details', {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,
@@ -117,7 +118,7 @@ function DataFetching({ navigation }) {
           <TouchableOpacity
             navigation={navigation}
             onPress={() =>
-              navigation.navigate('DetailsScreen', {
+              navigation.navigate('Movie Details', {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,

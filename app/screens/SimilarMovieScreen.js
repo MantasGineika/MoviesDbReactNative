@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Button,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';
 import axios from 'axios';
 
 import SafeViewAndroid from '../components/SafeViewAndroid';
+import MyButton from '../components/MyButton';
 
 function DetailsScreen({ route, navigation }) {
   const { title } = route.params;
@@ -29,7 +21,6 @@ function DetailsScreen({ route, navigation }) {
       })
       .catch((error) => console.log(error));
   }, []);
-  console.log(similarMovies);
 
   return (
     <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
@@ -44,16 +35,16 @@ function DetailsScreen({ route, navigation }) {
           <Text style={styles.subtitle}>{JSON.stringify(overview)}</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button
-            style={styles.button}
+          <MyButton
+            style={styles.buttonas}
             title="Play Movie"
             onPress={() =>
-              navigation.navigate('SimilarMovieScreen', {
+              navigation.navigate('Media Player', {
                 id: id,
               })
             }
-          ></Button>
-          <Button style={styles.button} title="Add to Library"></Button>
+          />
+          <MyButton title="Add to Library" />
         </View>
       </View>
     </SafeAreaView>
@@ -61,18 +52,15 @@ function DetailsScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  button: {
-    marginHorizontal: 10,
-  },
   buttonsContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
   },
   descriptionContainer: {
     flex: 2,

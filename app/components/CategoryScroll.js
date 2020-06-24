@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  FlatList,
-  Image,
-} from 'react-native';
-
-import BrowseScreen from '../screens/BrowseScreen';
-import MovieCard from './MovieCard';
-import DataFetching from './DataFetching';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 
 function CategoryScroll({ categoryTitle }) {
   return (

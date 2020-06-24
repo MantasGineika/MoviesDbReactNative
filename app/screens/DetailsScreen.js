@@ -4,7 +4,6 @@ import {
   Text,
   Image,
   StyleSheet,
-  Button,
   SafeAreaView,
   FlatList,
   TouchableOpacity,
@@ -12,7 +11,7 @@ import {
 import axios from 'axios';
 
 import SafeViewAndroid from '../components/SafeViewAndroid';
-import { ScrollView } from 'react-native-gesture-handler';
+import MyButton from '../components/MyButton';
 
 function DetailsScreen({ route, navigation }) {
   const { title } = route.params;
@@ -45,19 +44,18 @@ function DetailsScreen({ route, navigation }) {
           <Text style={styles.subtitle}>{JSON.stringify(overview)}</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button
-            style={styles.button}
+          <MyButton
             title="Play Movie"
             onPress={() =>
-              navigation.navigate('PlayerScreen', {
+              navigation.navigate('Media Player', {
                 id: id,
               })
             }
-          ></Button>
-          <Button style={styles.button} title="Add to Library"></Button>
+          />
+          <MyButton title="Add to Library" />
         </View>
       </View>
-      <View style={styles.container2}>
+      <View style={styles.containerSimilarMovies}>
         <Text style={styles.listTitle}>Similar Movies</Text>
         <FlatList
           keyExtractor={(item) => item.id.toString()}
@@ -67,7 +65,7 @@ function DetailsScreen({ route, navigation }) {
             <TouchableOpacity
               navigation={navigation}
               onPress={() =>
-                navigation.navigate('SimilarMovieScreen', {
+                navigation.navigate('Similar Movie', {
                   title: item.title,
                   overview: item.overview,
                   poster_path: item.poster_path,
@@ -82,7 +80,7 @@ function DetailsScreen({ route, navigation }) {
                     uri: `https://image.tmdb.org/t/p/w200//${item.poster_path}`,
                   }}
                 ></Image>
-                <Text style={styles.text}>{item.title}</Text>
+                <Text style={styles.titleSimilarMovie}>{item.title}</Text>
               </View>
             </TouchableOpacity>
           )}
@@ -93,14 +91,6 @@ function DetailsScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 3,
-    backgroundColor: '#000',
-  },
-  container2: {
-    flex: 1,
-  },
-
   buttonsContainer: {
     flex: 1,
     height: 50,
@@ -108,6 +98,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
     marginBottom: 10,
+  },
+  container: {
+    flex: 3,
+    backgroundColor: '#000',
+  },
+  containerSimilarMovies: {
+    flex: 1,
   },
   descriptionContainer: { flex: 1 },
   image: {
@@ -129,10 +126,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 8,
     overflow: 'hidden',
-  },
-  scrollView: {
-    width: '100%',
-    flexGrow: 1,
+    borderColor: '#000',
+    borderWidth: 1,
   },
   similarMovies: {
     flex: 1,
@@ -142,13 +137,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
   },
-  subtitle2: {},
   title: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
     marginHorizontal: 15,
+  },
+  titleSimilarMovie: {
+    color: '#000',
+    fontSize: 12,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
