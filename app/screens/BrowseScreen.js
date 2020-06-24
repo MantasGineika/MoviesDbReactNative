@@ -6,17 +6,19 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import MovieCard from '../components/MovieCard';
-import CategoryScroll from '../components/CategoryScroll';
+
 import DataFetching from '../components/DataFetching';
+import SafeViewAndroid from '../components/SafeViewAndroid';
 
 function BrowseScreen({ navigation }) {
   return (
-    <ScrollView style={styles.scrollViewContainer}>
-      <SafeAreaView style={styles.container}>
-        <DataFetching navigation={navigation} />
-      </SafeAreaView>
-    </ScrollView>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
+      <ScrollView style={styles.scrollViewContainer}>
+        <View style={styles.container}>
+          <DataFetching navigation={navigation} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

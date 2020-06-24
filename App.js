@@ -11,36 +11,30 @@ import HomeScreen from './app/screens/HomeScreen';
 import BrowseScreen from './app/screens/BrowseScreen';
 import DetailsScreen from './app/screens/DetailsScreen';
 import PlayerScreen from './app/screens/PlayerScreen';
+import SafeViewAndroid from './app/components/SafeViewAndroid';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style={styles.navigationContainer}>
-      <Stack.Navigator style={styles.navigator}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
-        <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-        <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
+      <NavigationContainer style={styles.navigationContainer}>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
+          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+          <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'blue',
-    borderWidth: 2,
-  },
-  navigationContainer: {
-    flex: 1,
-  },
-  navigator: {
-    color: 'red',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 });

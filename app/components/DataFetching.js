@@ -30,7 +30,6 @@ function DataFetching({ navigation }) {
       })
       .catch((error) => console.log(error));
   }, []);
-  console.log(moviePopular.length);
 
   useEffect(() => {
     axios
@@ -53,6 +52,7 @@ function DataFetching({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         data={moviePopular}
         renderItem={({ item }) => (
@@ -63,7 +63,7 @@ function DataFetching({ navigation }) {
                 title: item.title,
                 overview: item.overview,
                 poster_path: item.poster_path,
-                id: item.id,
+                id: item.imdb_id,
               })
             }
           >
@@ -80,6 +80,7 @@ function DataFetching({ navigation }) {
         )}
       ></FlatList>
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         data={movieUpcoming}
         renderItem={({ item }) => (
@@ -95,6 +96,7 @@ function DataFetching({ navigation }) {
         )}
       ></FlatList>
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         data={movieNow}
         renderItem={({ item }) => (

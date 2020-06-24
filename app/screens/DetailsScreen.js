@@ -1,7 +1,14 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
-import MyButton from '../components/MyButton';
-import PlayerScreen from './PlayerScreen';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+} from 'react-native';
+
+import SafeViewAndroid from '../components/SafeViewAndroid';
 
 function DetailsScreen({ route, navigation }) {
   const { title } = route.params;
@@ -10,7 +17,7 @@ function DetailsScreen({ route, navigation }) {
   const { id } = route.params;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container, SafeViewAndroid.AndroidSafeArea]}>
       <Image
         resizeMode="contain"
         source={{ uri: `https://image.tmdb.org/t/p/w500//${poster_path}` }}
@@ -31,7 +38,7 @@ function DetailsScreen({ route, navigation }) {
         ></Button>
         <Button title="Add to Library"></Button>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
